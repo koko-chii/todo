@@ -15,7 +15,7 @@
 
     {{-- ⑦ エラーメッセージ表示 (バリデーション失敗時) --}}
     @if (count($errors) > 0)
-      <div class="todo__alert-error">
+      <div class="todo__alert--error">
         <ul>
           @foreach ($errors->all() as $error)
             <li>{{ $error }}</li>
@@ -25,7 +25,8 @@
     @endif
 
    <div class="todo__content">
-  <form class="create-form">
+  <form class="create-form" action="/todos" method="post">
+    @csrf
     <div class="create-form__item">
       <input class="create-form__item-input" type="text" name="content">
     </div>
@@ -38,26 +39,34 @@
       <tr class="todo-table__row">
         <th class="todo-table__header">Todo</th>
       </tr>
+
+      @foreach ($todos as $todo)
       <tr class="todo-table__row">
         <td class="todo-table__item">
-          <form class="update-form">
+          <form class="update-form" action="/todos/update" method="post">
+            @method('PATCH')
+            @csrf
             <div class="update-form__item">
-              <input class="update-form__item-input" type="text" name="content" value="test">
+            <input class="update-form__item-input" type="text" name="content" value="{{ $todo->content }}">
+            <input type="hidden" name="id" value="{{ $todo->id }}">
             </div>
             <div class="update-form__button">
-              <button class="update-form__button-submit" type="submit">更新</button>
+            <button class="update-form__button-submit" type="submit">更新</button>
             </div>
-          </form>
-        </td>
-        <td class="todo-table__item">
-          <form class="delete-form">
+            </form>
+            </td>
+            <td class="todo-table__item">
+            <form class="delete-form" action="/todos/delete" method="post">
+            @method('DELETE')
+            @csrf
             <div class="delete-form__button">
-              <button class="delete-form__button-submit" type="submit">削除</button>
+            <input type="hidden" name="id" value="{{ $todo->id }}">
+            <button class="delete-form__button-submit" type="submit">削除</button>
             </div>
           </form>
         </td>
       </tr>
-    {{--   @endforeach--}}
+    @endforeach
       </table>
     </div>
   </div>

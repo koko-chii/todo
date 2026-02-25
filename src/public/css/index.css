@@ -5,14 +5,16 @@
   color: #0f5132;
 }
 
-.todo__alert--danger {
+.todo__alert--error {
   padding: 10px 0;
   border-color: #f5c2c7;
   background-color: #f8d7da;
   color: #842029;
+  border-style: solid; /* border-color を有効にするために必要 */
+  border-width: 1px;
 }
 
-.todo__alert--danger ul {
+.todo__alert--error ul {
   margin: 0;
 }
 
