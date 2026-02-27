@@ -19,7 +19,8 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
-        Category::create(['name' => $request->name]);
+        $category = $request->only(['name']);
+        Category::create($category);
 
         return redirect('/categories')->with('message', 'カテゴリを作成しました');
     }
@@ -29,7 +30,7 @@ class CategoryController extends Controller
         $category = $request->only(['name']);
         Category::find($request->id)->update($category);
 
-        return redirect('/categories')->with('message', 'カテゴリを更新しました');
+        return redirect()->route('categories.index')->with('message', 'カテゴリを更新しました');
     }
 
 
@@ -37,6 +38,6 @@ class CategoryController extends Controller
     {
         Category::find($request->id)->delete();
 
-        return redirect('/categories')->with('error_message', 'カテゴリを削除しました');
+        return redirect('/categories')->with('message', 'カテゴリを削除しました');
     }
 }
