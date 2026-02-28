@@ -153,3 +153,21 @@
   color: #fff;
   cursor: pointer;
 }
+
+/* 1. select要素の標準デザインを解除（必須） */
+select {
+  appearance: base-select; /* または相当するカスタマイズ設定 */
+}
+
+/* 2. ご提示のカスタマイズコード */
+option::checkmark {
+  content: "✔"; 
+  color: blue;  
+}
+
+/* カテゴリ選択（select）をクリック・フォーカスした時のスタイル */
+select:focus {
+  outline: none;           /* ブラウザ標準の枠線を消す */
+  border: 2px solid blue;  /* 枠線を青色にする（太さや色は調整可能） */
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5); /* ぼんやり光る効果（お好みで） */
+}

@@ -67,6 +67,7 @@
             <div class="update-form__item">
               <input class="update-form__item-input" type="text" name="content" value="{{ $todo['content'] }}">
               <input type="hidden" name="id" value="{{ $todo['id'] }}" />
+              <input type="hidden" name="category_id" value="{{ $todo['category_id'] }}" />
             </div>
             <div class="update-form__item">
               <p class="update-form__item-p">{{ $todo['category']['name'] }}</p>
